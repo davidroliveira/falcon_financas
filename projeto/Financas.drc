@@ -2320,40 +2320,40 @@ BEGIN
 	System_SysConst_SInvalidInput,	L"Invalid numeric input"
 END
 
-/* c:\program files (x86)\embarcadero\rad studio\11.0\lib\Win32\release\Controls.res */
-/* c:\program files (x86)\embarcadero\rad studio\11.0\lib\Win32\release\Buttons.res */
-/* c:\program files (x86)\embarcadero\rad studio\11.0\lib\Win32\release\Vcl.DBLogDlg.dfm */
-/* c:\program files (x86)\embarcadero\rad studio\11.0\lib\Win32\release\Vcl.DBPWDlg.dfm */
-/* c:\program files (x86)\embarcadero\rad studio\11.0\lib\Win32\release\DBCtrls.res */
-/* c:\program files (x86)\embarcadero\rad studio\11.0\lib\Win32\release\DBGrids.res */
+/* c:\program files\embarcadero\rad studio\11.0\lib\Win32\release\Controls.res */
+/* c:\program files\embarcadero\rad studio\11.0\lib\Win32\release\Buttons.res */
+/* c:\program files\embarcadero\rad studio\11.0\lib\Win32\release\Vcl.DBLogDlg.dfm */
+/* c:\program files\embarcadero\rad studio\11.0\lib\Win32\release\Vcl.DBPWDlg.dfm */
+/* c:\program files\embarcadero\rad studio\11.0\lib\Win32\release\DBCtrls.res */
+/* c:\program files\embarcadero\rad studio\11.0\lib\Win32\release\DBGrids.res */
 /* C:\Program Files (x86)\FMSoft\Framework\uniGUI\uniGUIForm.DFM */
 /* C:\Program Files (x86)\FMSoft\Framework\uniGUI\uniGUIServerCP.dfm */
 /* C:\Program Files (x86)\FMSoft\Framework\uniGUI\uniGUIVersion.res */
 /* C:\Program Files (x86)\FMSoft\Framework\uniGUI\uniGUIControlLogin.dfm */
-/* C:\Projetos\Falcon Financas\Projeto\ServerModule.dfm */
-/* C:\Projetos\Falcon Financas\Projeto\MainModule.dfm */
-/* C:\Projetos\Falcon Financas\Projeto\U_DM.dfm */
-/* C:\Projetos\Falcon Financas\Projeto\U_Mensagem.dfm */
-/* C:\Projetos\Falcon Financas\Projeto\U_Pagina_Web.dfm */
-/* C:\Projetos\Falcon Financas\Projeto\U_Cadastro.dfm */
-/* C:\Projetos\Falcon Financas\Projeto\U_DM_Imagens.dfm */
-/* C:\Projetos\Falcon Financas\Projeto\U_Cad_Heranca_Frame.dfm */
-/* C:\Projetos\Falcon Financas\Projeto\U_Cad_Heranca.dfm */
-/* C:\Projetos\Falcon Financas\Projeto\U_Cad_Tipo_Receita.dfm */
-/* C:\Projetos\Falcon Financas\Projeto\U_Empresa_Conectar.dfm */
-/* C:\Projetos\Falcon Financas\Projeto\U_Cad_Cliente_Fornecedor.dfm */
-/* C:\Projetos\Falcon Financas\Projeto\U_Cad_Tipo_Despesa.dfm */
-/* C:\Projetos\Falcon Financas\Projeto\U_Confirmacao_Exclusao.dfm */
-/* C:\Projetos\Falcon Financas\Projeto\U_Confirmacao_Pagamento_Recebimento.dfm */
-/* C:\Projetos\Falcon Financas\Projeto\U_Contas_a_Pagar.dfm */
-/* c:\program files (x86)\embarcadero\rad studio\11.0\lib\Win32\release\TeeFonts.res */
-/* c:\program files (x86)\embarcadero\rad studio\11.0\lib\Win32\release\TeeResou.res */
-/* C:\Projetos\Falcon Financas\Projeto\U_Graficos_Tela_Principal.dfm */
-/* C:\Projetos\Falcon Financas\Projeto\U_Contas.dfm */
-/* C:\Projetos\Falcon Financas\Projeto\U_Contas_a_Receber.dfm */
-/* C:\Projetos\Falcon Financas\Projeto\U_Transferencia_Saldo.dfm */
-/* C:\Projetos\Falcon Financas\Projeto\U_Principal.dfm */
-/* C:\Projetos\Falcon Financas\Projeto\U_Esqueci_Minha_Senha.dfm */
-/* C:\Projetos\Falcon Financas\Projeto\Main.dfm */
-/* C:\Projetos\Falcon Financas\Projeto\Financas.res */
-/* C:\Projetos\Falcon Financas\Projeto\Financas.drf */
+/* C:\FS\falcon_financas\trunk\projeto\ServerModule.dfm */
+/* C:\FS\falcon_financas\trunk\projeto\MainModule.dfm */
+/* C:\FS\falcon_financas\trunk\projeto\U_DM.dfm */
+/* C:\FS\falcon_financas\trunk\projeto\U_Mensagem.dfm */
+/* C:\FS\falcon_financas\trunk\projeto\U_Pagina_Web.dfm */
+/* C:\FS\falcon_financas\trunk\projeto\U_Cadastro.dfm */
+/* C:\FS\falcon_financas\trunk\projeto\U_DM_Imagens.dfm */
+/* C:\FS\falcon_financas\trunk\projeto\U_Cad_Heranca_Frame.dfm */
+/* C:\FS\falcon_financas\trunk\projeto\U_Cad_Heranca.dfm */
+/* C:\FS\falcon_financas\trunk\projeto\U_Cad_Tipo_Receita.dfm */
+/* C:\FS\falcon_financas\trunk\projeto\U_Empresa_Conectar.dfm */
+/* C:\FS\falcon_financas\trunk\projeto\U_Cad_Cliente_Fornecedor.dfm */
+/* C:\FS\falcon_financas\trunk\projeto\U_Cad_Tipo_Despesa.dfm */
+/* C:\FS\falcon_financas\trunk\projeto\U_Confirmacao_Exclusao.dfm */
+/* C:\FS\falcon_financas\trunk\projeto\U_Confirmacao_Pagamento_Recebimento.dfm */
+/* C:\FS\falcon_financas\trunk\projeto\U_Contas_a_Pagar.dfm */
+/* c:\program files\embarcadero\rad studio\11.0\lib\Win32\release\TeeFonts.res */
+/* c:\program files\embarcadero\rad studio\11.0\lib\Win32\release\TeeResou.res */
+/* C:\FS\falcon_financas\trunk\projeto\U_Graficos_Tela_Principal.dfm */
+/* C:\FS\falcon_financas\trunk\projeto\U_Contas.dfm */
+/* C:\FS\falcon_financas\trunk\projeto\U_Contas_a_Receber.dfm */
+/* C:\FS\falcon_financas\trunk\projeto\U_Transferencia_Saldo.dfm */
+/* C:\FS\falcon_financas\trunk\projeto\U_Principal.dfm */
+/* C:\FS\falcon_financas\trunk\projeto\U_Esqueci_Minha_Senha.dfm */
+/* C:\FS\falcon_financas\trunk\projeto\Main.dfm */
+/* C:\FS\falcon_financas\trunk\projeto\Financas.res */
+/* C:\FS\falcon_financas\trunk\projeto\Financas.drf */

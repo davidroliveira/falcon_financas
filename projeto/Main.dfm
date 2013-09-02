@@ -31,7 +31,7 @@ object FormLogin: TFormLogin
     AutoSize = True
     Stretch = False
     Proportional = False
-    Url = '/imagens/Falcon Finan'#231'as Cloud.png'
+    Url = '/imagens/falcon_financas_cloud.png'
     Transparent = False
   end
   object edt_senha: TUniEdit

@@ -7,7 +7,7 @@ uses
   Controls, Forms, Dialogs, uniGUITypes, uniGUIAbstractClasses,
   uniGUIClasses, uniGUIFrame, uniGUIBaseClasses, uniPanel, uniBasicGrid,
   uniDBGrid, VCLTee.TeEngine, UniChart, uniButton, uniBitBtn, uniLabel,
-  UniCalendarPanel;
+  UniCalendarPanel, VCLTee.Series;
 
 type
   TFrameGraficos_Tela_Principal = class(TUniFrame)
@@ -24,6 +24,8 @@ type
     UniBitBtn1: TUniBitBtn;
     pn_saldo: TUniPanel;
     UniPanel4: TUniPanel;
+    Series1: TUniBarSeries;
+    Series2: TUniBarSeries;
     procedure UniBitBtn1Click(Sender: TObject);
 
   private
