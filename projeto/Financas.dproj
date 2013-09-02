@@ -1,0 +1,226 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{C511B3A0-11C3-4877-8306-CC27A7219185}</ProjectGuid>
+        <ProjectVersion>14.6</ProjectVersion>
+        <MainSource>Financas.dpr</MainSource>
+        <Config Condition="'$(Config)'==''">Debug</Config>
+        <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+        <FrameworkType>VCL</FrameworkType>
+        <Base>True</Base>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
+        <TargetedPlatforms>1</TargetedPlatforms>
+        <AppType>Application</AppType>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_1)'!=''">
+        <Cfg_1>true</Cfg_1>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_2)'!=''">
+        <Cfg_2>true</Cfg_2>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base)'!=''">
+        <Manifest_File>None</Manifest_File>
+        <VerInfo_Locale>1046</VerInfo_Locale>
+        <DCC_Namespace>Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;Winapi;$(DCC_Namespace)</DCC_Namespace>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <DCC_UnitSearchPath>C:\Program Files (x86)\Embarcadero\RAD Studio\7.0\ComboBoxYeni;C:\Program Files\Embarcadero\RAD Studio\7.0\ComboBoxYeni;C:\Program Files\Embarcadero\RAD Studio\11.0\ComboBoxYeni;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UsePackage>vclx;vcl;vclimg;dbrtl;Rave77VCL;bdertl;rtl;vclactnband;vcldb;vcldbx;vcltouch;xmlrtl;dsnap;dsnapcon;TeeUI;TeeDB;Tee;vclib;ibxpress;adortl;IndyCore;IndySystem;IndyProtocols;inet;intrawebdb_100_140;Intraweb_100_140;VclSmp;vclie;websnap;webdsnap;inetdb;inetdbbde;inetdbxpress;soaprtl;vclribbon;dbexpress;DbxCommonDriver;DataSnapIndy10ServerTransport;DataSnapProviderClient;DbxClientDriver;DataSnapServer;DBXInterBaseDriver;DBXMySQLDriver;dbxcds;DBXFirebirdDriver;DBXSybaseASEDriver;DBXSybaseASADriver;DBXOracleDriver;DBXMSSQLDriver;DBXInformixDriver;DBXDb2Driver;rxctl;rxdb;rxbde;frx14;frxADO14;frxBDE14;frxcs14;frxDB14;frxDBX14;frxe14;frxIBX14;frxTee14;fs14;fsADO14;fsBDE14;fsDB14;fsIBX14;fsTee14;SynEdit_R2010;uniGUI14;uniGUI14Ex;uniGUI14Chart;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_DependencyCheckOutputName>Financas.exe</DCC_DependencyCheckOutputName>
+        <DCC_ImageBase>00400000</DCC_ImageBase>
+        <DCC_Platform>x86</DCC_Platform>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_1)'!=''">
+        <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+        <DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+        <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+        <DCC_DebugInformation>false</DCC_DebugInformation>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2)'!=''">
+        <DCC_UnitSearchPath>C:\Program Files (x86)\FMSoft\Framework\uniGUI\ComboBoxYeni;C:\Users\Public\Documents\FMSoft\Framework\uniGUI\ComboBoxYeni;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_DcuOutput>./dcu</DCC_DcuOutput>
+        <DCC_MapFile>3</DCC_MapFile>
+        <DCC_Define>DEBUG;EUREKALOG;EUREKALOG_VER6;$(DCC_Define)</DCC_Define>
+    </PropertyGroup>
+    <ItemGroup>
+        <DelphiCompile Include="$(MainSource)">
+            <MainSource>MainSource</MainSource>
+        </DelphiCompile>
+        <DCCReference Include="ServerModule.pas">
+            <Form>ID_ALL</Form>
+            <DesignClass>TUniGUIServerModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="MainModule.pas">
+            <Form>ID</Form>
+            <DesignClass>TUniGUIMainModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Main.pas">
+            <Form>FormLogin</Form>
+            <DesignClass>TUniForm</DesignClass>
+        </DCCReference>
+        <DCCReference Include="U_Principal.pas">
+            <Form>FormPrincipal</Form>
+            <DesignClass>TUniForm</DesignClass>
+        </DCCReference>
+        <DCCReference Include="U_Cadastro.pas">
+            <Form>FormCadastro</Form>
+            <DesignClass>TUniForm</DesignClass>
+        </DCCReference>
+        <DCCReference Include="U_DM.pas">
+            <Form>DM</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="funcoes\U_Global.pas"/>
+        <DCCReference Include="funcoes\U_Funcao_valida_senha.pas"/>
+        <DCCReference Include="funcoes\U_Funcao_Versao.pas"/>
+        <DCCReference Include="U_Cad_Heranca.pas">
+            <Form>FormCad_Heranca</Form>
+            <DesignClass>TUniForm</DesignClass>
+        </DCCReference>
+        <DCCReference Include="U_Cad_Heranca_Frame.pas">
+            <Form>FrameCad_Heranca_Frame</Form>
+            <DesignClass>TUniFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="funcoes\U_Verifica_Campo_Null.pas"/>
+        <DCCReference Include="U_Esqueci_Minha_Senha.pas">
+            <Form>FormEsqueci_Minha_Senha</Form>
+            <DesignClass>TUniForm</DesignClass>
+        </DCCReference>
+        <DCCReference Include="funcoes\U_Sessao.pas"/>
+        <DCCReference Include="U_Cad_Tipo_Receita.pas">
+            <Form>FormCad_Tipo_Receita</Form>
+            <DesignClass>TUniForm</DesignClass>
+        </DCCReference>
+        <DCCReference Include="U_Empresa_Conectar.pas">
+            <Form>FormEmpresa_Conectar</Form>
+            <DesignClass>TUniForm</DesignClass>
+        </DCCReference>
+        <DCCReference Include="U_Contas_a_Pagar.pas">
+            <Form>FrameContas_a_Pagar</Form>
+            <DesignClass>TUniFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="U_Graficos_Tela_Principal.pas">
+            <Form>FrameGraficos_Tela_Principal</Form>
+            <DesignClass>TUniFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="U_Mensagem.pas">
+            <Form>FormMensagem</Form>
+            <DesignClass>TUniForm</DesignClass>
+        </DCCReference>
+        <DCCReference Include="U_Contas.pas">
+            <Form>FormCad_Contas</Form>
+            <DesignClass>TUniForm</DesignClass>
+        </DCCReference>
+        <DCCReference Include="U_Cad_Tipo_Despesa.pas">
+            <Form>FormCad_Tipo_Despesa</Form>
+            <DesignClass>TUniForm</DesignClass>
+        </DCCReference>
+        <DCCReference Include="U_Cad_Cliente_Fornecedor.pas">
+            <Form>FormCad_Cliente_Fornecedor</Form>
+            <DesignClass>TUniForm</DesignClass>
+        </DCCReference>
+        <DCCReference Include="funcoes\U_Grava_Email.pas"/>
+        <DCCReference Include="U_Pagina_Web.pas">
+            <Form>FormPagina_Web</Form>
+            <DesignClass>TUniForm</DesignClass>
+        </DCCReference>
+        <DCCReference Include="funcoes\U_Cookies.pas"/>
+        <DCCReference Include="funcoes\U_Financeiro.pas"/>
+        <DCCReference Include="U_Confirmacao_Pagamento_Recebimento.pas">
+            <Form>FormConfirmacao_Pagamento_Recebimento</Form>
+            <DesignClass>TUniForm</DesignClass>
+        </DCCReference>
+        <DCCReference Include="funcoes\U_Carrega_Combo.pas"/>
+        <DCCReference Include="U_Confirmacao_Exclusao.pas">
+            <Form>FormConfirmacao_Exclusao</Form>
+            <DesignClass>TUniForm</DesignClass>
+        </DCCReference>
+        <DCCReference Include="funcoes\U_Imagens.pas"/>
+        <DCCReference Include="funcoes\U_JS_Humane.pas"/>
+        <DCCReference Include="funcoes\U_Filtro_Calendario.pas"/>
+        <DCCReference Include="funcoes\U_Anexos.pas"/>
+        <DCCReference Include="funcoes\U_Funcao_Exporta_Html.pas"/>
+        <DCCReference Include="U_Contas_a_Receber.pas">
+            <Form>FrameContas_a_Receber</Form>
+            <DesignClass>TUniFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="U_DM_Imagens.pas">
+            <Form>DM_Imagens</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="U_Transferencia_Saldo.pas">
+            <Form>FormTransferencia_Saldo</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TUniForm</DesignClass>
+        </DCCReference>
+        <DCCReference Include="funcoes\U_Graficos.pas"/>
+        <BuildConfiguration Include="Debug">
+            <Key>Cfg_2</Key>
+            <CfgParent>Base</CfgParent>
+        </BuildConfiguration>
+        <BuildConfiguration Include="Base">
+            <Key>Base</Key>
+        </BuildConfiguration>
+        <BuildConfiguration Include="Release">
+            <Key>Cfg_1</Key>
+            <CfgParent>Base</CfgParent>
+        </BuildConfiguration>
+    </ItemGroup>
+    <Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')"/>
+    <ProjectExtensions>
+        <Borland.Personality>Delphi.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Delphi.Personality>
+                <Source>
+                    <Source Name="MainSource">Financas.dpr</Source>
+                </Source>
+                <Parameters>
+                    <Parameters Name="UseLauncher">False</Parameters>
+                    <Parameters Name="LoadAllSymbols">True</Parameters>
+                    <Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
+                </Parameters>
+                <VersionInfo>
+                    <VersionInfo Name="IncludeVerInfo">False</VersionInfo>
+                    <VersionInfo Name="AutoIncBuild">False</VersionInfo>
+                    <VersionInfo Name="MajorVer">1</VersionInfo>
+                    <VersionInfo Name="MinorVer">0</VersionInfo>
+                    <VersionInfo Name="Release">0</VersionInfo>
+                    <VersionInfo Name="Build">0</VersionInfo>
+                    <VersionInfo Name="Debug">False</VersionInfo>
+                    <VersionInfo Name="PreRelease">False</VersionInfo>
+                    <VersionInfo Name="Special">False</VersionInfo>
+                    <VersionInfo Name="Private">False</VersionInfo>
+                    <VersionInfo Name="DLL">False</VersionInfo>
+                    <VersionInfo Name="Locale">1046</VersionInfo>
+                    <VersionInfo Name="CodePage">1252</VersionInfo>
+                </VersionInfo>
+                <VersionInfoKeys>
+                    <VersionInfoKeys Name="CompanyName"/>
+                    <VersionInfoKeys Name="FileDescription"/>
+                    <VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys>
+                    <VersionInfoKeys Name="InternalName"/>
+                    <VersionInfoKeys Name="LegalCopyright"/>
+                    <VersionInfoKeys Name="LegalTrademarks"/>
+                    <VersionInfoKeys Name="OriginalFilename"/>
+                    <VersionInfoKeys Name="ProductName"/>
+                    <VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+                    <VersionInfoKeys Name="Comments"/>
+                </VersionInfoKeys>
+                <Excluded_Packages/>
+            </Delphi.Personality>
+            <Platforms>
+                <Platform value="Win32">True</Platform>
+                <Platform value="Win64">False</Platform>
+            </Platforms>
+        </BorlandProject>
+        <ProjectFileVersion>12</ProjectFileVersion>
+    </ProjectExtensions>
+    <Import Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj" Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')"/>
+</Project>

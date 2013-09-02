@@ -1,0 +1,261 @@
+unit U_Cad_Tipo_Receita;
+
+interface
+
+uses U_Cad_Heranca, FMTBcd, DB, uniBasicGrid, uniDBGrid, uniEdit, uniButton,
+  uniBitBtn, uniPanel, uniLabel, uniDBEdit, uniGUIClasses, uniCheckBox,
+  uniDBCheckBox, uniImageList, Provider, DBClient, SqlExpr, uniScrollBox,
+  uniPageControl, uniToolBar, Classes, Controls, uniGUIBaseClasses,
+  uniStatusBar, uniGUIFrame, uniGUIApplication, DBXCommon, Dialogs, SysUtils,
+  uniGUIForm, uADStanIntf, uADStanOption, uADStanParam, uADStanError,
+  uADDatSManager, uADPhysIntf, uADDAptIntf, uADStanAsync, uADDAptManager,
+  uADCompDataSet, uADCompClient, uniGUIAbstractClasses;
+
+type
+  TFormCad_Tipo_Receita = class(TFormCad_Heranca)
+    UniPanel1: TUniPanel;
+    edt_pesq_descricao: TUniEdit;
+    UniLabel1: TUniLabel;
+    UniDBGrid1: TUniDBGrid;
+    DB_Ativo: TUniDBCheckBox;
+    DB_Descricao: TUniDBEdit;
+    UniLabel2: TUniLabel;
+    ADQuery: TADQuery;
+    ADQueryID_TIPO_RECEITA: TADAutoIncField;
+    ADQueryID_MASTER: TIntegerField;
+    ADQueryID_EMPRESA: TIntegerField;
+    ADQueryDESCRICAO_RECEITA: TWideStringField;
+    ADQueryATIVO: TWideStringField;
+    ADQueryDAT_CADASTRO: TDateTimeField;
+    ADQueryID_USUARIO: TIntegerField;
+    ADQueryIMG_ATIVO: TStringField;
+    bt_pesquisa: TUniBitBtn;
+    procedure bt_salvarClick(Sender: TObject);
+    procedure bt_excluirClick(Sender: TObject);
+    procedure UniFormCreate(Sender: TObject);
+    procedure bt_pesquisaClick(Sender: TObject);
+    procedure UniDBGrid1DblClick(Sender: TObject);
+    procedure edt_pesq_descricaoKeyPress(Sender: TObject; var Key: Char);
+    procedure DSStateChange(Sender: TObject);
+    procedure ADQueryIMG_ATIVOGetText(Sender: TField; var Text: string;
+      DisplayText: Boolean);
+    procedure UniDBGrid1ColumnSort(Column: TUniDBGridColumn;
+      Direction: Boolean);
+  private
+    { Private declarations }
+    Conexao                                                                     :TADConnection;
+    Transaction                                                                 :TADTransaction;
+    SQLQuery                                                                    :TADQuery;
+  public
+    { Public declarations }
+  end;
+
+function FormCad_Tipo_Receita: TFormCad_Tipo_Receita;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  MainModule, U_Sessao, U_Global, U_Verifica_Campo_Null,
+  U_DM, U_JS_Humane;
+
+function FormCad_Tipo_Receita: TFormCad_Tipo_Receita;
+begin
+  Result := TFormCad_Tipo_Receita(ID.GetFormInstance(TFormCad_Tipo_Receita));
+end;
+
+procedure TFormCad_Tipo_Receita.ADQueryIMG_ATIVOGetText(Sender: TField;
+  var Text: string; DisplayText: Boolean);
+begin
+  inherited;
+  if DS.DataSet.FieldByName('ATIVO').AsString = 'S' then
+    Text:= '<img src="../imagens/16/tick.png" />';
+  if DS.DataSet.FieldByName('ATIVO').AsString = 'N' then
+    Text:= '<img src="../imagens/16/cross.png" />';
+end;
+
+procedure TFormCad_Tipo_Receita.bt_excluirClick(Sender: TObject);
+begin
+  //inherited;
+   MessageDlg('Deseja realmente excluir?', mtConfirmation, mbYesNo, procedure(Res: Integer)
+  begin
+    if Res = mrYes then
+      begin
+        try
+          if Not DS.DataSet.IsEmpty then //se nao estiver vazio
+           begin
+             DS.DataSet.Delete;
+
+             UniStatusBar1.Panels.Items[0].Text:= 'Exclusão efetuada com Sucesso.';
+             humane.success('<div> <p><img src= imagens/32/empty.png align=left/> '+
+                            'Exclusão efetuada com Sucesso.</p> </div>',2500,True);
+           end
+          else
+            UniStatusBar1.Panels.Items[0].Text:= 'Não existem registros para serem excluidos!';
+         except
+           on e: exception do
+             begin
+               DS.DataSet.Cancel;
+               if Copy(E.Message,0,59) = '[FireDAC][Phys][MySQL] Cannot delete or update a parent row' then
+                begin
+                  ShowMessage('Atenção!<br><br> '+
+                              '<div> <p><img src="imagens\warning.png" align="left"/> Não é possivel excluir, o mesmo possui dependências com outros regitros!</p> </div> <br>'+
+                              'Você Pode Inativar este Item, Desmarcando a Opção "Ativo". ');
+                end
+               else
+                 RelatorioErro(String(TUniFrame(Self).Name),String(TUniFrame(Sender).Name),e.UnitName,e.ClassName,e.Message);
+
+               UniStatusBar1.Panels.Items[0].Text:='Exclusão Cancelada!';
+               Exit;
+             end;
+         end;
+      end;
+  end
+  );
+end;
+
+procedure TFormCad_Tipo_Receita.bt_pesquisaClick(Sender: TObject);
+begin
+  inherited;
+  try
+    with ADQuery do
+      begin
+        Close;
+        SQL.Clear;
+        SQL.Add('SELECT * FROM TIPO_RECEITAS                                          ');
+        SQL.Add(' WHERE ID_MASTER  = '''+IntToStr(ID.id_glo_master)+'''               ');
+        SQL.Add('   AND ID_EMPRESA = '''+IntToStr(ID.id_glo_empresa)+'''              ');
+        if edt_pesq_descricao.Text <> EmptyStr then
+        SQL.Add('   AND UPPER(DESCRICAO_RECEITA) LIKE UPPER(''%'+edt_pesq_descricao.Text+'%'')');
+        Open;
+      end;
+
+    if DS.DataSet.IsEmpty then
+      UniStatusBar1.Panels.Items[0].Text  := 'Sua pesquisa não retornou nenhuma informação!'
+    else
+      UniStatusBar1.Panels.Items[0].Text  := 'Pesquisa realizada com sucesso!';
+  except
+    on e:exception do
+      begin
+        RelatorioErro(String(TUniFrame(Self).Name),String(TUniFrame(Sender).Name),e.UnitName,e.ClassName,e.Message);
+      end;
+  end;
+end;
+
+procedure TFormCad_Tipo_Receita.bt_salvarClick(Sender: TObject);
+begin
+  //inherited;
+  if Verifica_Edit(TUniForm(Self)) then
+    begin
+      try
+        if Not(Transaction.Active) then
+          Transaction.StartTransaction;
+
+        RemoveAspas(TUniForm(Self));
+
+        if DS.DataSet.State in [dsInsert] then
+          begin
+            SQLQuery.SQL.Clear;
+            SQLQuery.SQL.Add('SELECT COUNT(*) TOTAL FROM TIPO_RECEITAS                '+
+                             ' WHERE ID_MASTER        = :P00                          '+
+                             '   AND ID_EMPRESA       = :P01                          '+
+                             '   AND UPPER(DESCRICAO_RECEITA) = UPPER(:P02)                   ');
+            SQLQuery.Params[00].AsInteger := ID.id_glo_master;
+            SQLQuery.Params[01].AsInteger := ID.id_glo_empresa;
+            SQLQuery.Params[02].AsString  := DB_Descricao.Text;
+            SQLQuery.Open;
+            if SQLQuery.Fields[0].AsInteger > 0 then
+              begin
+                ShowMessage('Tipo de Receita já Cadastrado!');
+                Exit;
+              end;
+
+            //DS.DataSet.FieldByName('ID_TIPO_RECEITA').AsInteger := gen_id('TIPO_RECEITAS',Conexao);
+            DS.DataSet.FieldByName('ID_MASTER').AsInteger       := ID.id_glo_master;
+            DS.DataSet.FieldByName('ID_EMPRESA').AsInteger      := ID.id_glo_empresa;
+            DS.DataSet.FieldByName('DAT_CADASTRO').AsDateTime   := data_atual_bd;
+            DS.DataSet.FieldByName('ID_USUARIO').AsInteger      := ID.id_glo_usuario;
+            DS.DataSet.Post;
+
+            Transaction.Commit;
+
+            humane.success('<div> <img src= imagens/32/tick_blue.png </> '+
+                           'Registro Incluído com sucesso. </div>',2500,True);
+            UniStatusBar1.Panels.Items[0].Text := 'Registro Incluído com sucesso.';
+          end;
+
+        if DS.DataSet.State in [dsEdit] then
+          begin
+            DS.DataSet.Post;
+
+            Transaction.Commit;
+
+            UniStatusBar1.Panels.Items[0].Text := 'Registro alterado com sucesso.';
+            humane.success('<div> <p><img src= imagens/32/tick_blue.png align=left/> '+
+                           'Registro alterado com sucesso.</p> </div>',2500,True);
+          end;
+      except
+        on e: exception do
+          begin
+            Transaction.Rollback;
+            RelatorioErro(String(TUniFrame(Self).Name),String(TUniFrame(Sender).Name),e.UnitName,e.ClassName,e.Message);
+          end;
+      end;
+    end;
+
+end;
+
+procedure TFormCad_Tipo_Receita.DSStateChange(Sender: TObject);
+begin
+  inherited;
+  if DS.DataSet.State in [dsInsert] then
+    begin
+      DS.DataSet.FieldByName('ATIVO').AsString:= 'S';
+      DB_Descricao.SetFocus;
+    end;
+end;
+
+procedure TFormCad_Tipo_Receita.edt_pesq_descricaoKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  inherited;
+  if Key = '#13' then
+    bt_pesquisa.Click;
+end;
+
+procedure TFormCad_Tipo_Receita.UniDBGrid1ColumnSort(Column: TUniDBGridColumn;
+  Direction: Boolean);
+begin
+  inherited;
+  if Direction then
+    (DS.DataSet as TADQuery).IndexFieldNames  := Column.FieldName+':A'
+  else
+    (DS.DataSet as TADQuery).IndexFieldNames  := Column.FieldName+':D';
+end;
+
+procedure TFormCad_Tipo_Receita.UniDBGrid1DblClick(Sender: TObject);
+begin
+  inherited;
+  DS.DataSet.Edit;
+  UniPageControl1.ActivePage  := Tab_Cadastro;
+  DB_Descricao.SetFocus;
+end;
+
+procedure TFormCad_Tipo_Receita.UniFormCreate(Sender: TObject);
+begin
+  inherited;
+  {Cria uma Nova Sessão no Banco de Dados (Utilizado pelas Transações)}
+  Conexao := TADConnection.Create(Self);
+  SessaoFireDac(TUniFrame(Self),Conexao,'utf8');
+
+  Transaction         := TADTransaction.Create(Self);
+  SQLQuery            := TADQuery.Create(Self);
+
+  Seta_Conexao_FireDac(TUniFrame(Self), Conexao);
+
+  ADQuery.Params[00].AsInteger  := ID.id_glo_master;
+  ADQuery.Params[01].AsInteger  := ID.id_glo_empresa;
+end;
+
+end.
